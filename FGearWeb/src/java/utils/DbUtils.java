@@ -31,10 +31,13 @@ public class DbUtils {
     public static void main(String[] args) {
         try {
             System.out.println(getConnection());
+            System.out.println("Kết nối database thành công");
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(DbUtils.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         } catch (SQLException ex) {
             Logger.getLogger(DbUtils.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         }
     }
 }

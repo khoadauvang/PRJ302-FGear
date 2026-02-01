@@ -4,7 +4,8 @@
  */
 package models;
 
-import java.util.Map;
+import java.util.Locale;
+import java.text.NumberFormat;
 
 /**
  *
@@ -130,5 +131,32 @@ public class ProductDTO {
     public void setSub_id(String sub_id) {
         this.sub_id = sub_id;
     }
+
+    @Override
+    public String toString() {
+        return "{id:" + product_id + ", name:" + name + ",price:" + price + ",sale:"
+                + sale_price + ",slug:" + slug + ",thumbnail_url:" + thumbnail_url
+                + ",warranty:" + warranty_period + ",brand:" + brand + ",status:"
+                + status + ",specifications:" + specifications + ",sub_id:" + sub_id + "}";
+    }
     
+    //
+    public String formatCurrency(int amount) {
+        // Tạo Locale cho Việt Nam để có dấu chấm (.) phân cách hàng nghìn
+        Locale localeVN = new Locale("vi", "VN");
+        NumberFormat currencyFormatter = NumberFormat.getInstance(localeVN);
+
+        // Format số và cộng thêm ký hiệu ₫ vào cuối
+        return currencyFormatter.format(amount) + "₫";
+    }
+
+    // Method mới: Dùng để hiển thị Giá Gốc ra giao diện
+    public String getFormattedPrice() {
+        return formatCurrency(this.price);
+    }
+
+    // Method mới: Dùng để hiển thị Giá Khuyến Mãi ra giao diện
+    public String getFormattedSale_price() {
+        return formatCurrency(this.sale_price);
+    }
 }
