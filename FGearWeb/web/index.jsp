@@ -9,6 +9,8 @@
 <%@page import="java.text.DecimalFormat" %>
 <%@page import="models.ProductDAO" %>
 <%@page import="models.ProductDTO" %>
+<%@page import="models.UserDTO" %>
+<%@page import="models.UserDAO" %>
 
 <%!
     public String formatCurrency(int amount) {
@@ -164,12 +166,32 @@
                             <div class="d-none d-lg-block lh-1 small">Giỏ<br>hàng</div>
                         </div>
 
+                        
                         <div class="d-flex align-items-center gap-2" role="button">
+                            <%
+                                UserDTO curUser = (UserDTO)session.getAttribute("user");
 
+                                if (curUser != null) {
+                            %>
+                            <a href="#" class="header-user d-flex align-items-center gap-2 text-decoration-none">
+                            <i class="fa-solid fa-user fs-5"></i>
+                            <span class="d-none d-lg-block">Hello, <%= curUser.getUsername() %></span>
+                            </a>
+                            <a href="UserController?action=logout" class="d-flex align-items-center gap-1 text-white text-decoration-none ms-3 opacity-75 hover-opacity-100">
+                                <i class="fa-solid fa-right-from-bracket"></i> <span>Logout</span>
+                            </a>
+                            
+                            <% 
+                                } else { 
+                            %>
+                            
                             <a href="login.jsp" class="header-user d-flex align-items-center gap-2">
                                 <i class="fa-solid fa-user fs-5"></i>
                                 <span class="d-none d-lg-block">Đăng nhập</span>
                             </a>
+                            <%
+                                }
+                            %>
 
                         </div>
 
@@ -551,101 +573,6 @@
                         %>
                     </div>
                 </section>
-
-                <%--
-                Từ thằng 8 trở đi chưa có dữ liệu nên comment hết :v  
-                <!-- 8. MAINBOARD BÁN CHẠY -->
-                <section class="bg-white rounded p-3 mb-4 shadow-sm">
-                    <div class="d-flex justify-content-between align-items-center mb-3 border-bottom pb-2">
-                        <h2 class="h5 fw-bold text-uppercase m-0">MAINBOARD BÁN CHẠY</h2>
-                        <a href="#" class="link-view-all text-primary">Xem tất cả</a>
-                    </div>
-                    <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-3">
-                        <%
-                            list1.clear();
-                            productListResult = dao.searchBySubCategory("SUB011");                        
-                            
-                            count = 0;
-                            for (ProductDTO p : productListResult) {
-                                if (count >= 5) break; // Chỉ chạy tới sản phẩm thứ 5 thì dừng
-                               count++;
-                        %>
-                        <div class="col">
-                            <div class="card h-100 product-card border-light shadow-sm">
-                                <div class="ratio ratio-1x1 bg-light rounded-top d-flex align-items-center justify-content-center text-secondary">
-                                    <!-- Chỗ này để img src từ DB -->
-                                    <img src="<%= p.getThumbnail_url() %>" alt="alt"/>
-                                </div>
-                                <div class="card-body d-flex flex-column p-2">
-                                    <h6 class="card-title text-truncate placeholder-text"><%= p.getName() %></h6>
-                                    <div class="mt-auto">
-                                        <%
-                                            if(p.getSale_price() != 0) {
-                                        %>
-                                            <div class="text-decoration-line-through text-muted small placeholder-text"><%= p.getFormattedPrice() %></div>
-                                            <div class="fw-bold text-danger placeholder-text"><%= p.getFormattedSale_price() %></div>
-                                        <%
-                                            } else {
-                                        %>
-                                            <div class="fw-bold text-danger placeholder-text"><%= p.getFormattedPrice() %></div>
-                                        <%
-                                            }
-                                        %>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <%
-                          }  
-                        %>
-                    </div>
-                </section>
-
-            <!-- 9. NGUỒN (PSU) BÁN CHẠY -->
-            <section class="bg-white rounded p-3 mb-4 shadow-sm">
-                <div class="d-flex justify-content-between align-items-center mb-3 border-bottom pb-2">
-                    <h2 class="h5 fw-bold text-uppercase m-0">NGUỒN (PSU) BÁN CHẠY</h2>
-                    <a href="#" class="link-view-all text-primary">Xem tất cả</a>
-                </div>
-                <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-3">
-                    <div class="col"><div class="card h-100 product-card border-light shadow-sm"><div class="ratio ratio-1x1 bg-light d-flex align-items-center justify-content-center text-secondary"><i class="fa-solid fa-plug fs-1"></i></div><div class="card-body d-flex flex-column p-2"><h6 class="card-title text-truncate placeholder-text">Tên Nguồn...</h6><div class="mt-auto"><div class="fw-bold text-danger placeholder-text">Giá bán...</div></div></div></div></div>
-                </div>
-            </section>
-
-            <!-- 10. CASE BÁN CHẠY -->
-            <section class="bg-white rounded p-3 mb-4 shadow-sm">
-                <div class="d-flex justify-content-between align-items-center mb-3 border-bottom pb-2">
-                    <h2 class="h5 fw-bold text-uppercase m-0">CASE BÁN CHẠY</h2>
-                    <a href="#" class="link-view-all text-primary">Xem tất cả</a>
-                </div>
-                <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-3">
-                    <div class="col"><div class="card h-100 product-card border-light shadow-sm"><div class="ratio ratio-1x1 bg-light d-flex align-items-center justify-content-center text-secondary"><i class="fa-solid fa-box fs-1"></i></div><div class="card-body d-flex flex-column p-2"><h6 class="card-title text-truncate placeholder-text">Tên Case...</h6><div class="mt-auto"><div class="fw-bold text-danger placeholder-text">Giá bán...</div></div></div></div></div>
-                </div>
-            </section>
-
-            <!-- 11. TẢN NHIỆT BÁN CHẠY -->
-            <section class="bg-white rounded p-3 mb-4 shadow-sm">
-                <div class="d-flex justify-content-between align-items-center mb-3 border-bottom pb-2">
-                    <h2 class="h5 fw-bold text-uppercase m-0">TẢN NHIỆT BÁN CHẠY</h2>
-                    <a href="#" class="link-view-all text-primary">Xem tất cả</a>
-                </div>
-                <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-3">
-                    <div class="col"><div class="card h-100 product-card border-light shadow-sm"><div class="ratio ratio-1x1 bg-light d-flex align-items-center justify-content-center text-secondary"><i class="fa-solid fa-fan fs-1"></i></div><div class="card-body d-flex flex-column p-2"><h6 class="card-title text-truncate placeholder-text">Tên Tản nhiệt...</h6><div class="mt-auto"><div class="fw-bold text-danger placeholder-text">Giá bán...</div></div></div></div></div>
-                </div>
-            </section>
-
-            <!-- 12. TAI NGHE BÁN CHẠY -->
-            <section class="bg-white rounded p-3 mb-4 shadow-sm">
-                <div class="d-flex justify-content-between align-items-center mb-3 border-bottom pb-2">
-                    <h2 class="h5 fw-bold text-uppercase m-0">TAI NGHE BÁN CHẠY</h2>
-                    <a href="#" class="link-view-all text-primary">Xem tất cả</a>
-                </div>
-                <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-3">
-                    <div class="col"><div class="card h-100 product-card border-light shadow-sm"><div class="ratio ratio-1x1 bg-light d-flex align-items-center justify-content-center text-secondary"><i class="fa-solid fa-headphones fs-1"></i></div><div class="card-body d-flex flex-column p-2"><h6 class="card-title text-truncate placeholder-text">Tên Tai nghe...</h6><div class="mt-auto"><div class="fw-bold text-danger placeholder-text">Giá bán...</div></div></div></div></div>
-                </div>
-            </section>
-                --%>
-
             </div>
             <aside class="side-banner">Banner Phải</aside>
         </div>

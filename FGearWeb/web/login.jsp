@@ -284,7 +284,7 @@
                 </div>
             </div>
         </header>
-    <body>
+        <!-- -->
         <div class="login-wrapper">
 
             <div class="login-box">
@@ -294,7 +294,9 @@
                     <h2>Đăng nhập tài khoản</h2>
                 </div>
 
-                <form action="doLogin" method="post">
+                
+                <form action="UserController" method="post">
+                    <input type="hidden" name="action" value="login">
                     <div class="input-group">
                         <label for="email">Email / Số điện thoại</label>
                         <input type="text" id="email" name="email" placeholder="Nhập email hoặc số điện thoại" required>
@@ -315,8 +317,6 @@
                         <a href="register.jsp">Tạo tài khoản mới</a>
                     </div>
                 </form>
-
             </div>
-
         </div>
     </body>
