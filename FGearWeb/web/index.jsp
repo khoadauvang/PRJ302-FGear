@@ -28,6 +28,7 @@
         <!-- Bootstrap & Font Awesome (optional) -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+        <link rel="stylesheet" href="assets/css/style.css"/>
 
         <!-- CSS -->
         <style>
@@ -130,9 +131,77 @@
                     <!-- Logo & Menu Danh mục -->
                     <div class="d-flex align-items-center gap-3">
                         <a href="http://localhost:8080/FGearWeb" class="text-white text-decoration-none fw-bold fs-3">FGear</a>
-                        <button class="btn btn-glass d-flex align-items-center gap-2">
+                        
+                        <div class="site-overlay"></div>
+                        
+                        <div class="menu-wrapper">
+                            
+                        <button class="btn btn-glass d-flex align-items-center gap-2 menutab-btn">
                             <i class="fa-solid fa-bars"></i> Danh mục
                         </button>
+                        
+                            <div class="main-menu sidebar-menu">
+                                <nav class="megamenu-nav">
+                                    <ul class="megamenu-nav-main">
+                                        <li class="megamenu-item">
+                                            <a class="megamenu-link" href="#">
+                                                <span class="megamenu-name">Laptop</span>
+                                                <span class="megamenu-ic-right">❯</span>
+                                            </a>
+                                        </li>
+
+                                        <li class="megamenu-item">
+                                            <a class="megamenu-link" href="#">
+                                                <span class="megamenu-name">PC FGear</span>
+                                                <span class="megamenu-ic-right">❯</span>
+                                            </a>
+                                        </li>
+
+                                        <li class="megamenu-item">
+                                            <a class="megamenu-link" href="#">
+                                                <span class="megamenu-name">Mainboard</span>
+                                                <span class="megamenu-ic-right">❯</span>
+                                            </a>
+                                        </li>
+
+                                        <li class="megamenu-item">
+                                            <a class="megamenu-link" href="#">
+                                                <span class="megamenu-name">CPU</span>
+                                                <span class="megamenu-ic-right">❯</span>
+                                            </a>
+                                        </li>
+
+                                        <li class="megamenu-item">
+                                            <a class="megamenu-link" href="#">
+                                                <span class="megamenu-name">VGA</span>
+                                                <span class="megamenu-ic-right">❯</span>
+                                            </a>
+                                        </li>
+
+                                        <li class="megamenu-item">
+                                            <a class="megamenu-link" href="#">
+                                                <span class="megamenu-name">Case</span>
+                                                <span class="megamenu-ic-right">❯</span>
+                                            </a>
+                                        </li>
+
+                                        <li class="megamenu-item">
+                                            <a class="megamenu-link" href="#">
+                                                <span class="megamenu-name">Nguồn</span>
+                                                <span class="megamenu-ic-right">❯</span>
+                                            </a>
+                                        </li>
+
+                                        <li class="megamenu-item">
+                                            <a class="megamenu-link" href="#">
+                                                <span class="megamenu-name">Tản nhiệt</span>
+                                                <span class="megamenu-ic-right">❯</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Thanh tìm kiếm (Input Group Bootstrap) -->
@@ -140,6 +209,7 @@
                         <div class="input-group">
                             <input type="text" class="form-control header-search-input border-0" placeholder="Bạn cần tìm gì?">
                             <button class="btn btn-light text-danger" type="button">
+                                
                                 <i class="fa-solid fa-magnifying-glass"></i>
                             </button>
                         </div>
@@ -586,5 +656,6 @@
 
     <!-- Bootstrap JS Bundle (Bắt buộc để chạy các tính năng động nếu có) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/script.js"></script>
 </body>
 </html>
