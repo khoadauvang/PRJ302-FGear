@@ -1,0 +1,117 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : Feb 26, 2026, 1:22:33 AM
+    Author     : AD
+*/
+
+/* =========================================
+   TRẠNG THÁI MẶC ĐỊNH (KHI CHƯA BẤM NÚT)
+   ========================================= */
+.menu-wrapper {
+    position: relative; 
+    display: inline-block; /* Để cái hộp ôm vừa khít cái nút, không bị phình to ra */
+}
+
+/* Ẩn lớp phủ */
+.site-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Màu đen mờ 50% */
+    z-index: 99; /* Đảm bảo đè lên mọi thứ, chỉ dưới menu */
+    opacity: 0;
+    visibility: hidden; /* Ẩn đi hoàn toàn */
+    transition: all 0.3s ease; /* Thêm hiệu ứng mờ dần cho mượt */
+}
+
+/* Ẩn Menu */
+.main-menu {
+    position: absolute; /* Đặt vị trí tuyệt đối so với trang */
+    top: calc(100% + 5px); /* Chỉnh cái này cho khớp với thanh header của bạn */
+    left: 0; 
+    width: 180px;
+    background-color: white;
+    z-index: 100; /* Nằm trên cả lớp phủ overlay */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px); /* Kéo menu xê lên một chút để làm hiệu ứng trượt */
+    transition: all 0.3s ease;
+    border-radius: 4px;
+}
+
+/* Trang trí list menu xíu cho đẹp */
+.main-menu ul { list-style: none; padding: 0; margin: 0; }
+.main-menu ul li a { display: block; padding: 10px 15px; color: black; text-decoration: none; border-bottom: 1px solid #eee; }
+.main-menu ul li a:hover { color: red; }
+
+/* =========================================
+   TRẠNG THÁI KHI CLICK (CSS KÍCH HOẠT)
+   ========================================= */
+
+/* Khi body có class 'open-overlay', lớp phủ sẽ hiện ra */
+body.open-overlay .site-overlay {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Khi body có class 'open-menu', menu sẽ hiện ra và trượt xuống */
+body.open-menu .main-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Bonus: Khi mở menu thì khóa luôn cuộn chuột trang web (y chang GearVN) */
+body.open-menu {
+    overflow: hidden; 
+}
+/* Bỏ padding mặc định của thẻ ul */
+.megamenu-nav-main {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Dùng Flexbox để dàn hàng ngang các phần tử trong thẻ a */
+.megamenu-link {
+    display: flex; 
+    align-items: center; /* Căn giữa theo chiều dọc */
+    justify-content: space-between; /* Đẩy icon sang trái, mũi tên sang phải */
+    padding: 12px 15px;
+    color: #333;
+    text-decoration: none;
+    border-bottom: 1px solid #f1f1f1;
+    transition: all 0.2s ease;
+}
+
+/* Chỉnh kích thước cho khu vực chứa Icon */
+.megamenu-icon {
+    width: 25px; 
+    margin-right: 12px;
+    text-align: center;
+}
+
+/* Phần chữ sẽ chiếm hết khoảng trống ở giữa */
+.megamenu-name {
+    flex: 1; 
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Chỉnh cái mũi tên nhỏ lại và mờ đi chút */
+.megamenu-ic-right {
+    font-size: 10px;
+    color: #999;
+}
+
+/* Hiệu ứng khi hover chuột vào từng dòng (chữ đỏ, nền xám nhẹ) */
+.megamenu-link:hover {
+    color: #e30019; /* Màu đỏ đặc trưng của các web bán gear */
+    background-color: #f8f9fa;
+}
+
+.megamenu-link:hover .megamenu-ic-right {
+    color: #e30019;
+}
