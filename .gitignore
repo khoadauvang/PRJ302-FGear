@@ -30,3 +30,4 @@ nbdist/
 .nb-gradle/
 
 FGearWeb/src/java/utils/DbUtils.java
+FGearWeb/src/java/utils/DbUtils.java
