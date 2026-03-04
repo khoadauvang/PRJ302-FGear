@@ -33,7 +33,7 @@ public class ProductController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //
+        System.out.println("Hello mấy con vợ");
     }
 
     /**
@@ -49,23 +49,23 @@ public class ProductController extends HttpServlet {
             throws ServletException, IOException {
 
         //Lấy đường dẫn user vừa gọi
-        String path = request.getServletPath();
-        
-        switch (path) {
-            case "/products/show-by-subcategory":
-                //http://localhost:8080/FGearWeb/products/search?sub_id=SUB004
-                searchProductsBySubCategory(request, response);
-                break;
-            case "/products/find":
-                //http://localhost:8080/FGearWeb/products/find?product_id=
-                findSpecificProductByItsId(request, response);
-                break;
-            default:
-                break;
-        }
+//        String path = request.getServletPath();
+//        switch (path) {
+//            case "/products/show-by-subcategory":
+//                //http://localhost:8080/FGearWeb/products/search?sub_id=SUB004
+//                searchProductsBySubCategory(request, response);
+//                break;
+//            case "/products/find":
+//                //http://localhost:8080/FGearWeb/products/find?product_id=
+//                findSpecificProductByItsId(request, response);
+//                System.out.println("Test xem có xuống được đây không, tìm kiếm sp cụ thể");
+//                break;
+//            default:
+//                break;
+//        }
         
         //Gọi hàm processRequest ở trên để xử lý tiếp
-//        processRequest(request, response);
+        processRequest(request, response);
     }
 
     /**
