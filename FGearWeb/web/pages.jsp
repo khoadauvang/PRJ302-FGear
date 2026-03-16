@@ -85,10 +85,10 @@
 
         /* Tùy chọn Scrollbar nếu bạn có quá nhiều sản phẩm trong 1 mục */
         .scrollable-grid {
-            max-height: 1400px;
+/*            max-height: 1400px;
             overflow-y: auto;
             overflow-x: hidden;
-            padding-right: 5px;
+            padding-right: 5px;*/
         }
         .scrollable-grid::-webkit-scrollbar { width: 6px; }
         .scrollable-grid::-webkit-scrollbar-track { background: #f8f9fa; border-radius: 4px; }
@@ -219,33 +219,41 @@
             </div>
         </div>
     </header>
-
-
     <!-- ================= 2. MAIN CONTENT ================= -->
     <div class="container" style="max-width: 1200px;">
+        <%
+            //ép kiểu dữ liệu
+            ArrayList<ProductDTO> list = (ArrayList<ProductDTO>)request.getAttribute("products");
+            String keyword = request.getParameter("keyword");
+            ProductDTO prd = list.get(0);
+            
 
+        %>
         <!-- MỤC 1: SẢN PHẨM -->
         <section class="bg-white rounded p-4 mb-4 shadow-sm">
             
             <!-- Header Section -->
             <div class="d-flex justify-content-between align-items-center mb-3 border-bottom pb-2">
-                <h2 class="h5 fw-bold text-uppercase m-0 text-dark">Laptop Bán Chạy</h2>
+                <%
+                    if(keyword.equals("LPT") || keyword.equals("CPU") || keyword.equals("VGA") || keyword.equals("MSE") || keyword.equals("RAM")) {
+                %>
+                        <h2 class="h5 fw-bold text-uppercase m-0 text-dark"><%= prd.getName().split(" ")[0] %></h2>
+                <%    
+                    } else {
+                %>
+                        <h2 class="h5 fw-bold text-uppercase m-0 text-dark"><%= prd.getName().split(" ")[0] + " " + prd.getName().split(" ")[1]%></h2>
+                <%
+                    }
+                %>
             </div>
 
             <!-- Lưới Sản Phẩm: 2 cột(Mobile) -> 3 cột(Tablet) -> 5 cột(Desktop) -->
             <div class="scrollable-grid">
                 <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-3">
-                    
-                    <!-- [ Bắt đầu vòng lặp Java/JSTL ở đây ] -->
-                    <%
-                        //ép kiểu dữ liệu
-                        ArrayList<ProductDTO> list = (ArrayList<ProductDTO>)request.getAttribute("products");
-                        String keyword = request.getParameter("keyword");
-                        for (ProductDTO product : list) {
-                                
-                    %>
-                    
                     <!-- SẢN PHẨM MẪU 1 -->
+                    <%
+                        for (ProductDTO product : list) {
+                    %>
                     <div class="col">
                         <div class="card h-100 product-card border-light shadow-sm">
                             <div class="ratio ratio-1x1 bg-light rounded-top d-flex align-items-center justify-content-center text-secondary">
@@ -271,8 +279,6 @@
                             </div>
                         </div>
                     </div>
-
-                    
                     <!-- [ Kết thúc vòng lặp ] -->
                     <%
                       }  

@@ -62,7 +62,7 @@ public class UserDAO {
                 user = new UserDTO(user_id, username, email, password, contact, sex, dob, address, role, statusStr, created_at, updated_at);
             }
         } catch (Exception e) {
-            return null;
+            e.printStackTrace();
         }
 
         return user;

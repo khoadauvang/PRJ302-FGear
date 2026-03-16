@@ -216,6 +216,15 @@
                 margin-bottom: 12px;
                 display: inline-block;
             }
+            .success-msg{
+                color:#28a745;
+                font-weight:500;
+            }
+
+            .error-msg{
+                color:#dc3545;
+                font-weight:500;
+            }
 
 
 
@@ -274,25 +283,17 @@
                             </a>
 
                         </div>
-
-
-
                     </div>
-
-
-
                 </div>
             </div>
         </header>
         <!-- -->
         <div class="login-wrapper">
-
             <div class="login-box">
                 <div class="login-header">
                     <img src="${pageContext.request.contextPath}/assets/img/fgear-logo.png" class="login-logo">
 
                     <h2>Đăng nhập tài khoản</h2>
-                </div>
 
 
                 <form action="UserController" method="post">

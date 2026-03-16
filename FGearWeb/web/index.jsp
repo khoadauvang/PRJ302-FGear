@@ -289,7 +289,7 @@
                 <section class="bg-white rounded p-3 mb-4 shadow-sm">
                     <div class="d-flex justify-content-between align-items-center mb-3 border-bottom pb-2">
                         <h2 class="h5 fw-bold text-uppercase m-0">LAPTOP BÁN CHẠY</h2>
-                        <a href="#" class="link-view-all text-primary">Xem tất cả</a>
+                        <a href="MainController?action=ShowProduct&keyword=LPT" class="link-view-all text-primary">Xem tất cả</a>
                     </div>
                     <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-3">
                         <%
@@ -301,32 +301,32 @@
                                 count++;
                         %>
                         <div class="col">
-                            <div class="card h-100 product-card border-light shadow-sm">
-                                <div class="ratio ratio-1x1 bg-light rounded-top d-flex align-items-center justify-content-center text-secondary">
-                                    <!-- Chỗ này để img src từ DB -->
-                                    <img src="<%= p.getThumbnail_url()%>" alt="alt"/>
-                                </div>
-                                <div class="card-body d-flex flex-column p-2">
-                                    <h6 class="card-title text-truncate placeholder-text"><%= p.getName()%></h6>
-                                    <div class="mt-auto">
-                                        <%
-                                            if (p.getSale_price() != 0) {
-                                        %>
-                                        <div class="text-decoration-line-through text-muted small placeholder-text"><%= p.getFormattedPrice()%></div>
-                                        <div class="fw-bold text-danger placeholder-text"><%= p.getFormattedSale_price()%></div>
-                                        <%
-                                        } else {
-                                        %>
-                                        <div class="fw-bold text-danger placeholder-text"><%= p.getFormattedPrice()%></div>
-                                        <%
-                                            }
-                                        %>
+                            <a href="MainController?action=ShowProductDetail&id=<%= p.getProduct_id() %>" class="text-decoration-none text-dark d-block h-100">
+                                <div class="card h-100 product-card border-light shadow-sm">
+                                    <div class="ratio ratio-1x1 bg-light rounded-top d-flex align-items-center justify-content-center text-secondary">
+                                        <!-- Chỗ này để img src từ DB -->
+                                        <img src="<%= p.getThumbnail_url()%>" alt="alt"/>
+                                    </div>
+                                    <div class="card-body d-flex flex-column p-2">
+                                        <h6 class="card-title text-truncate placeholder-text"><%= p.getName()%></h6>
+                                        <div class="mt-auto">
+                                            <%
+                                                if (p.getSale_price() != 0) {
+                                            %>
+                                            <div class="text-decoration-line-through text-muted small placeholder-text"><%= p.getFormattedPrice()%></div>
+                                            <div class="fw-bold text-danger placeholder-text"><%= p.getFormattedSale_price()%></div>
+                                            <%
+                                            } else {
+                                            %>
+                                            <div class="fw-bold text-danger placeholder-text"><%= p.getFormattedPrice()%></div>
+                                            <%
+                                                }
+                                            %>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
-
-                        
                         <%
                             } //kết thúc vòng lặp
                         %>
@@ -337,7 +337,7 @@
                 <section class="bg-white rounded p-3 mb-4 shadow-sm">
                     <div class="d-flex justify-content-between align-items-center mb-3 border-bottom pb-2">
                         <h2 class="h5 fw-bold text-uppercase m-0">VGA BÁN CHẠY</h2>
-                        <a href="#" class="link-view-all text-primary">Xem tất cả</a>
+                        <a href="MainController?action=ShowProduct&keyword=VGA" class="link-view-all text-primary">Xem tất cả</a>
                     </div>
                     <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-3">
                         <%
@@ -385,7 +385,7 @@
                 <section class="bg-white rounded p-3 mb-4 shadow-sm">
                     <div class="d-flex justify-content-between align-items-center mb-3 border-bottom pb-2">
                         <h2 class="h5 fw-bold text-uppercase m-0">CPU BÁN CHẠY</h2>
-                        <a href="#" class="link-view-all text-primary">Xem tất cả</a>
+                        <a href="MainController?action=ShowProduct&keyword=CPU" class="link-view-all text-primary">Xem tất cả</a>
                     </div>
                     <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-3">
                         <%
@@ -433,7 +433,7 @@
                 <section class="bg-white rounded p-3 mb-4 shadow-sm">
                     <div class="d-flex justify-content-between align-items-center mb-3 border-bottom pb-2">
                         <h2 class="h5 fw-bold text-uppercase m-0">RAM BÁN CHẠY</h2>
-                        <a href="#" class="link-view-all text-primary">Xem tất cả</a>
+                        <a href="MainController?action=ShowProduct&keyword=RAM" class="link-view-all text-primary">Xem tất cả</a>
                     </div>
                     <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-3">
                         <%
@@ -485,7 +485,7 @@
                 <section class="bg-white rounded p-3 mb-4 shadow-sm">
                     <div class="d-flex justify-content-between align-items-center mb-3 border-bottom pb-2">
                         <h2 class="h5 fw-bold text-uppercase m-0">MÀN HÌNH BÁN CHẠY</h2>
-                        <a href="#" class="link-view-all text-primary">Xem tất cả</a>
+                        <a href="MainController?action=ShowProduct&keyword=MON" class="link-view-all text-primary">Xem tất cả</a>
                     </div>
                     <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-3">
                         <%
@@ -538,7 +538,7 @@
                 <section class="bg-white rounded p-3 mb-4 shadow-sm">
                     <div class="d-flex justify-content-between align-items-center mb-3 border-bottom pb-2">
                         <h2 class="h5 fw-bold text-uppercase m-0">BÀN PHÍM BÁN CHẠY</h2>
-                        <a href="#" class="link-view-all text-primary">Xem tất cả</a>
+                        <a href="MainController?action=ShowProduct&keyword=KEY" class="link-view-all text-primary">Xem tất cả</a>
                     </div>
                     <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-3">
                         <%
@@ -587,7 +587,7 @@
                 <section class="bg-white rounded p-3 mb-4 shadow-sm">
                     <div class="d-flex justify-content-between align-items-center mb-3 border-bottom pb-2">
                         <h2 class="h5 fw-bold text-uppercase m-0">CHUỘT KHÔNG DÂY BÁN CHẠY</h2>
-                        <a href="#" class="link-view-all text-primary">Xem tất cả</a>
+                        <a href="MainController?action=ShowProduct&keyword=MSE" class="link-view-all text-primary">Xem tất cả</a>
                     </div>
                     <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-3">
                         <%
