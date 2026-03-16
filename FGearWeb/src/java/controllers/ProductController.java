@@ -55,6 +55,29 @@ public class ProductController extends HttpServlet {
         rd.forward(request, response);
     }
     
+    protected void doShowProductDetail (HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        //
+        String keyword = request.getParameter("id");
+        ProductDAO pDao = new ProductDAO();
+        ProductDTO result = pDao.findSpecificProductById(keyword);
+        String url = "";
+        if (result == null) {
+            url = "error.jsp";
+        } else {
+            url = "product.jsp";
+            request.setAttribute("product", result);
+//            System.out.println(request.getAttribute("products"));
+        }
+        
+        //Chuyển trang
+        RequestDispatcher rd = request.getRequestDispatcher(url);
+        rd.forward(request, response);
+    }
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -65,6 +88,8 @@ public class ProductController extends HttpServlet {
         String action = request.getParameter("action");
         if(action.equals("ShowProduct")){
             doShowAllProductsByCategory(request, response);
+        } else if(action.equals("ShowProductDetail")){
+            doShowProductDetail(request, response);
         }
     }
 
@@ -79,24 +104,6 @@ public class ProductController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        //Lấy đường dẫn user vừa gọi
-//        String path = request.getServletPath();
-//        switch (path) {
-//            case "/products/show-by-subcategory":
-//                //http://localhost:8080/FGearWeb/products/search?sub_id=SUB004
-//                searchProductsBySubCategory(request, response);
-//                break;
-//            case "/products/find":
-//                //http://localhost:8080/FGearWeb/products/find?product_id=
-//                findSpecificProductByItsId(request, response);
-//                System.out.println("Test xem có xuống được đây không, tìm kiếm sp cụ thể");
-//                break;
-//            default:
-//                break;
-//        }
-        
-        //Gọi hàm processRequest ở trên để xử lý tiếp
         processRequest(request, response);
     }
 

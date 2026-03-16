@@ -283,19 +283,12 @@
                             </a>
 
                         </div>
-
-
-
                     </div>
-
-
-
                 </div>
             </div>
         </header>
         <!-- -->
         <div class="login-wrapper">
-
             <div class="login-box">
                 <div class="login-header">
                     <img src="${pageContext.request.contextPath}/assets/img/fgear-logo.png" class="login-logo">
@@ -303,8 +296,6 @@
                     <h2>Đăng nhập tài khoản</h2>
 
                 </div>
-
-
                 <form action="UserController" method="post">
                     <input type="hidden" name="action" value="login">
                     <div class="input-group">
@@ -332,8 +323,6 @@
                     <div class="login-actions">
                         <button type="submit" class="btn-login">Đăng nhập</button>
                     </div>
-
-
 
                     <div class="login-links">
                         <a href="forgot.jsp">Quên mật khẩu?</a>
