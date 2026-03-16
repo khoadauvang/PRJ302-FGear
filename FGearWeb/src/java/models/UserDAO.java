@@ -68,30 +68,48 @@ public class UserDAO {
         return user;
     }
 
-    public boolean register(String email, String name, String password) {
-        boolean check = false;
+    public boolean updatePassword(String email, String password) {
+
+        String sql = "UPDATE Users SET password=? WHERE email=?";
+
         try {
+
             Connection conn = DbUtils.getConnection();
 
-            String sql = "INSERT INTO users(user_id, username, email, password, contact, sex, dob, address, role, status, created_at, updated_at) "
-                    + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, 2, 'ACTIVE', GETDATE(), GETDATE())";
             PreparedStatement ps = conn.prepareStatement(sql);
-            // tạo user_id mới
-            String newId = "USR" + (int) (Math.random() * 900 + 100);
 
-            ps.setString(1, newId);
-            ps.setString(2, name);
-            ps.setString(3, email);
-            ps.setString(4, password);
-            ps.setString(5, "");        // contact
-            ps.setString(6, "Other");   // sex
-            ps.setDate(7, java.sql.Date.valueOf("2000-01-01")); // dob
-            ps.setString(8, "");        // address
+            ps.setString(1, password);
+            ps.setString(2, email);
 
-            check = ps.executeUpdate() > 0;
+            return ps.executeUpdate() > 0;
+
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return check;
+
+        return false;
     }
+    public boolean checkEmail(String email) {
+
+    String sql = "SELECT email FROM Users WHERE email=?";
+
+    try {
+
+        Connection conn = DbUtils.getConnection();
+        PreparedStatement ps = conn.prepareStatement(sql);
+
+        ps.setString(1, email);
+
+        ResultSet rs = ps.executeQuery();
+
+        if (rs.next()) {
+            return true;
+        }
+
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+
+    return false;
+}
 }
