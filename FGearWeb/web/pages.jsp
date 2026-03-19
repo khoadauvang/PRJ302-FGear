@@ -202,7 +202,7 @@
                         %>
                         <a href="#" class="header-user d-flex align-items-center gap-2 text-decoration-none">
                             <i class="fa-solid fa-user fs-5"></i>
-                            <span class="d-none d-lg-block">Hello, <%= curUser.getUsername() %></span>
+                            <span class="d-none d-lg-block"><%= curUser.getUsername() %></span>
                         </a>
                         <a href="UserController?action=logout" class="d-flex align-items-center gap-1 text-white text-decoration-none ms-3 opacity-75 hover-opacity-100">
                             <i class="fa-solid fa-right-from-bracket"></i> <span>Logout</span>
@@ -255,29 +255,31 @@
                         for (ProductDTO product : list) {
                     %>
                     <div class="col">
-                        <div class="card h-100 product-card border-light shadow-sm">
-                            <div class="ratio ratio-1x1 bg-light rounded-top d-flex align-items-center justify-content-center text-secondary">
-                                <!-- Chỗ này để img src từ DB -->
-                                <img src="<%= product.getThumbnail_url()%>" alt="alt"/>
-                            </div>
-                            <div class="card-body d-flex flex-column p-2">
-                                <h6 class="card-title text-truncate placeholder-text"><%= product.getName()%></h6>
-                                <div class="mt-auto">
-                                    <%
-                                        if (product.getSale_price() != 0) {
-                                    %>
-                                    <div class="text-decoration-line-through text-muted small placeholder-text"><%= product.getFormattedPrice()%></div>
-                                    <div class="fw-bold text-danger placeholder-text"><%= product.getFormattedSale_price()%></div>
-                                    <%
-                                    } else {
-                                    %>
-                                    <div class="fw-bold text-danger placeholder-text"><%= product.getFormattedPrice()%></div>
-                                    <%
-                                        }
-                                    %>
+                        <a href="MainController?action=ShowProductDetail&id=<%= product.getProduct_id() %>" class="text-decoration-none text-dark d-block h-100">
+                            <div class="card h-100 product-card border-light shadow-sm">
+                                <div class="ratio ratio-1x1 bg-light rounded-top d-flex align-items-center justify-content-center text-secondary">
+                                    <!-- Chỗ này để img src từ DB -->
+                                    <img src="<%= product.getThumbnail_url()%>" alt="alt"/>
+                                </div>
+                                <div class="card-body d-flex flex-column p-2">
+                                    <h6 class="card-title text-truncate placeholder-text"><%= product.getName()%></h6>
+                                    <div class="mt-auto">
+                                        <%
+                                            if (product.getSale_price() != 0) {
+                                        %>
+                                        <div class="text-decoration-line-through text-muted small placeholder-text"><%= product.getFormattedPrice()%></div>
+                                        <div class="fw-bold text-danger placeholder-text"><%= product.getFormattedSale_price()%></div>
+                                        <%
+                                        } else {
+                                        %>
+                                        <div class="fw-bold text-danger placeholder-text"><%= product.getFormattedPrice()%></div>
+                                        <%
+                                            }
+                                        %>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
                     <!-- [ Kết thúc vòng lặp ] -->
                     <%

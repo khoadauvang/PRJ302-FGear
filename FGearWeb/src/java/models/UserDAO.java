@@ -111,5 +111,30 @@ public class UserDAO {
     }
 
     return false;
-}
+    }
+    
+    public boolean register(String email, String name, String password) {
+        boolean check = false;
+        String sql = "INSERT INTO Users(email, name, password) VALUES (?, ?, ?)";
+
+        try {
+            Connection conn = DbUtils.getConnection();
+            PreparedStatement ps = conn.prepareStatement(sql);
+
+            ps.setString(1, email);
+            ps.setString(2, name);
+            ps.setString(3, password);
+
+            int result = ps.executeUpdate();
+
+            if (result > 0) {
+                check = true;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return check;
+    }
 }

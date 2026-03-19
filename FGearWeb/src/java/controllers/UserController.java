@@ -47,10 +47,14 @@ public class UserController extends HttpServlet {
             String email = request.getParameter("email");
             String password = request.getParameter("password");
 
-            String hashedPassword = HashPasswordUtils.hashPassword(password);
-
+            //FIX CỨNG PASSWORD CHO LOGIN ADMIN
+            //      admin@fgear.com
+            //      admin123
+            String hashedPassword = HashPasswordUtils.hashPassword("admin123");
+            System.out.println(hashedPassword);
+            
             UserDAO udao = new UserDAO();
-            UserDTO user = udao.login(email, hashedPassword);
+            UserDTO user = udao.login("admin@fgear.com", hashedPassword);
 
             if (user != null) {
                 url = "index.jsp";
