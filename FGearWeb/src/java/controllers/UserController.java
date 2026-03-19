@@ -37,21 +37,19 @@ public class UserController extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
 
-        String url = "";
+        String url = "login.jsp";
         HttpSession session = request.getSession();
 
 //        System.out.println(request.getServletPath())
         String action = request.getParameter("action");
-        System.out.println(action);
+        System.out.println("ACTION = " + action);
 
         if (action.equals("login") && session.getAttribute("user") == null) {
             String email = request.getParameter("email");
             String password = request.getParameter("password");
 
-            String hashedPassword = HashPasswordUtils.hashPassword(password);
-
             UserDAO udao = new UserDAO();
-            UserDTO user = udao.login(email, hashedPassword);
+            UserDTO user = udao.login(email, password);
 
             if (user != null) {
                 url = "index.jsp";
@@ -75,9 +73,7 @@ public class UserController extends HttpServlet {
                 url = "register.jsp";
             } else {
                 String hashedPassword = HashPasswordUtils.hashPassword(password);
-
                 boolean check = udao.register(email, name, hashedPassword);
-
                 if (check) {
 
                     // gửi mail async (không làm chậm web)
@@ -86,12 +82,18 @@ public class UserController extends HttpServlet {
 
                             String subject = "Welcome to FGear 🎉";
 
-                            String content
-                                    = "Xin chào " + name + ",\n\n"
-                                    + "Tài khoản của bạn đã được đăng ký thành công tại FGear.\n\n"
-                                    + "Bạn có thể đăng nhập và bắt đầu mua sắm.\n\n"
-                                    + "Trân trọng,\n"
+//                            String content
+//                                    = "Xin chào " + name + ",\n\n"
+//                                    + "Tài khoản của bạn đã được đăng ký thành công tại FGear.\n\n"
+//                                    + "Bạn có thể đăng nhập và bắt đầu mua sắm.\n\n"
+//                                    + "Trân trọng,\n"
+//                                    + "FGear Team";
+                            String content = "Hello " + name + ",\n\n"
+                                    + "Your account has been successfully registered at FGear.\n\n"
+                                    + "You can now log in and start shopping.\n\n"
+                                    + "Best regards,\n"
                                     + "FGear Team";
+
                             EmailUtils.sendEmail(email, subject, content);
 
                         } catch (Exception e) {

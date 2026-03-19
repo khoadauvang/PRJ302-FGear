@@ -179,14 +179,24 @@
                 </div>
                 <!-- message -->
                 <%
-                    String msg = (String) request.getAttribute("message");
-                    if (msg != null) {
+                    String error = (String) request.getAttribute("error");
+                    if (error != null) {
                 %>
                 <div style="color:red; font-size: 14px; margin-bottom: 10px;">
-                    <%=msg%>
+                    <%= error%>
                 </div>
                 <%
-                }
+                    }
+                %>
+                <%
+                    String success = (String) request.getAttribute("success");
+                    if (success != null) {
+                %>
+                <div style="color:green; font-size: 14px; margin-bottom: 10px;">
+                    <%= success%>
+                </div>
+                <%
+                    }
                 %>
 
                 <div class="register-action">

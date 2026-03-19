@@ -122,17 +122,18 @@ public class UserDAO {
 
     public boolean register(String email, String name, String password) {
         boolean check = false;
-        String sql = "INSERT INTO Users(email, name, password) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO Users(user_id, email, username, password) VALUES (?, ?, ?, ?)";
 
         try {
             Connection conn = DbUtils.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql);
 
-            String hashed = HashPasswordUtils.hashPassword(password);
+            String userId = generateUserId(); // 🔥 thêm dòng này
 
-            ps.setString(1, email);
-            ps.setString(2, name);
-            ps.setString(3, hashed);
+            ps.setString(1, userId);
+            ps.setString(2, email);
+            ps.setString(3, name);
+            ps.setString(4, password);
 
             int result = ps.executeUpdate();
 
@@ -145,5 +146,28 @@ public class UserDAO {
         }
 
         return check;
+    }
+
+    public String generateUserId() {
+        String newId = "USR001";
+
+        try {
+            Connection conn = DbUtils.getConnection();
+            String sql = "SELECT TOP 1 user_id FROM Users ORDER BY user_id DESC";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                String lastId = rs.getString("user_id"); // VD: USR010
+                int num = Integer.parseInt(lastId.substring(3)); // lấy 010 → 10
+                num++;
+                newId = String.format("USR%03d", num); // → USR011
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return newId;
     }
 }
