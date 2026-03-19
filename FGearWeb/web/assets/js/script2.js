@@ -19,6 +19,8 @@ document.addEventListener("DOMContentLoaded", () => {
             });
             
             event.target.classList.add("active");
+            
+            mainImage.src = event.target.src;
         });
     });
 });

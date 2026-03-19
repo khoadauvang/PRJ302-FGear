@@ -49,7 +49,7 @@ public class UserController extends HttpServlet {
             String password = request.getParameter("password");
 
             String hashedPassword = HashPasswordUtils.hashPassword(password);
-
+            
             UserDAO udao = new UserDAO();
             UserDTO user = udao.login(email, hashedPassword);
 
