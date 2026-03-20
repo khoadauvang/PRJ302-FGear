@@ -105,9 +105,11 @@
                             OrdersDAO odao = new OrdersDAO();
                             try {
                                 curUser = (UserDTO)session.getAttribute("user");
-                                orders = odao.searchAllOrdersByUserId(curUser.getUserId());
+                                if(curUser != null) {
+                                    orders = odao.searchAllOrdersByUserId(curUser.getUserId());
+                                }
                             } catch (Exception e) {
-                                System.out.println("LỖI KHI MUỐN LẤY USER Ở HEADER.JSP");
+                                e.printStackTrace();
                             }
                         %>
                         <div class="d-flex align-items-center gap-2" role="button">

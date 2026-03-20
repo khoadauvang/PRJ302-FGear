@@ -124,7 +124,7 @@
     </head>
     <body>
         <!-- 1. HEADER (Sử dụng Flexbox Utilities của Bootstrap) -->
-        <jsp:include page="header.jsp" />
+        <%--<jsp:include page="header.jsp" />--%>
 
         <!-- 2. MAIN LAYOUT (3 Cột: Banner - Content - Banner) -->
         <div class="main-wrapper pb-5">
