@@ -27,9 +27,10 @@ public class UserDAO {
         UserDTO user = searchByEmail(email);
 
         if (user != null) {
-            String hashed = HashPasswordUtils.hashPassword(password);
+            String hashedInput = HashPasswordUtils.hashPassword(password);
+            System.out.println(hashedInput);
             
-            if (user.getPassword().equals(hashed)) {
+            if (user.getPassword().equals(hashedInput)) {
                 return user;
             }
         }
