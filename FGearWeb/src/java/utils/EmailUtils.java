@@ -4,9 +4,11 @@
  */
 package utils;
 
+
 import java.util.Properties;
 import javax.mail.*;
 import javax.mail.internet.*;
+
  
 public class EmailUtils {
    public static void sendEmail(String to, String subject, String content) {

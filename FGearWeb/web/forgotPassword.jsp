@@ -19,8 +19,8 @@
             :root {
                 --gearvn-red: #ff6600;
             }
-            
-           body {
+
+            body {
                 background-color: #f0f0f0;
                 font-family: 'Roboto', Arial, sans-serif;
             }
@@ -29,11 +29,20 @@
             .bg-gearvn {
                 background-color: var(--gearvn-red);
             }
+            .btn-gearvn {
+                background-color: var(--gearvn-red);
+                color: #fff;
+                font-weight: 500;
+            }
+            .btn-gearvn:hover {
+                background-color: #e65c00;
+            }
+
         </style>
-            
+
     </head>
     <body>
-         <!-- 1. HEADER (Sử dụng Flexbox Utilities của Bootstrap) -->
+        <!-- 1. HEADER (Sử dụng Flexbox Utilities của Bootstrap) -->
         <header class="bg-gearvn sticky-top shadow-sm py-2">
             <div class="container" style="max-width: 1200px;">
                 <div class="d-flex align-items-center justify-content-between">
@@ -95,19 +104,36 @@
                 </div>
             </div>
         </header>
-        <h2>Forgot Password</h2>
+        <h2 class="text-center my-4">Quên mật khẩu</h2>
 
-        <form action="MainController" method="post">
+        <div class="container d-flex justify-content-center">
+            <div class="card shadow-lg" style="max-width: 450px; width: 100%;">
+                <div class="card-body">
+                    <form action="MainController" method="post">
+                        <input type="hidden" name="action" value="sendCode">
 
-            <input type="hidden" name="action" value="sendCode">
+                        <!-- Email input -->
+                        <div class="mb-3">
+                            <label for="email" class="form-label fw-bold">Email</label>
+                            <input type="email" id="email" name="email" 
+                                   class="form-control" 
+                                   placeholder="Nhập email của bạn" required>
+                        </div>
 
-            Email:
-            <input type="email" name="email" required>
+                        <!-- Submit button -->
+                        <button type="submit" class="btn btn-gearvn w-100">
+                            <i class="fa-solid fa-paper-plane me-2"></i> Gửi mã xác nhận
+                        </button>
+                    </form>
 
-            <button type="submit">Send Code</button>
+                    <!-- Hiển thị thông báo -->
+                    <div class="mt-3 text-center text-danger">
+                        ${msg}
+                    </div>
+                </div>
+            </div>
+        </div>
 
-        </form>
 
-        ${msg}
     </body>
 </html>

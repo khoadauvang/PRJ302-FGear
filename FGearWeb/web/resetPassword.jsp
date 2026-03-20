@@ -24,6 +24,15 @@
             .bg-gearvn {
                 background-color: var(--gearvn-red);
             }
+            .btn-gearvn {
+                background-color: var(--gearvn-red);
+                color: #fff;
+                font-weight: 500;
+            }
+            .btn-gearvn:hover {
+                background-color: #e65c00;
+            }
+
         </style>
     </head>
     <body>
@@ -89,28 +98,44 @@
                 </div>
             </div>
         </header>
-        <h2>Reset Password</h2>
+        <h2 class="text-center my-4">Đặt lại mật khẩu</h2>
 
-        <form action="MainController" method="post">
+        <div class="container d-flex justify-content-center">
+            <div class="card shadow-lg" style="max-width: 450px; width: 100%;">
+                <div class="card-body">
+                    <form action="MainController" method="post" class="d-flex flex-column gap-3">
+                        <input type="hidden" name="action" value="resetPassword">
 
-            <input type="hidden" name="action" value="resetPassword">
+                        <!-- New Password -->
+                        <div class="mb-3">
+                            <label for="password" class="form-label fw-bold">Mật khẩu mới</label>
+                            <input type="password" id="password" name="password" 
+                                   class="form-control" minlength="6" maxlength="20" 
+                                   placeholder="Nhập mật khẩu mới" required>
+                            <small class="text-muted">Mật khẩu phải từ 6–20 ký tự</small>
+                        </div>
 
-            New Password:
-            <input type="password" name="password" minlength="6" maxlength="20" required>
-            <br>
-            <small>Password must be 6-20 characters</small>
+                        <!-- Confirm Password -->
+                        <div class="mb-3">
+                            <label for="confirmPassword" class="form-label fw-bold">Xác nhận mật khẩu</label>
+                            <input type="password" id="confirmPassword" name="confirmPassword" 
+                                   class="form-control" minlength="6" maxlength="20" 
+                                   placeholder="Nhập lại mật khẩu" required>
+                        </div>
 
-            <br><br>
+                        <!-- Submit button -->
+                        <button type="submit" class="btn btn-gearvn w-100">
+                            <i class="fa-solid fa-lock me-2"></i> Đổi mật khẩu
+                        </button>
+                    </form>
 
-            Confirm Password:
-            <input type="password" name="confirmPassword" minlength="6" maxlength="20" required>
+                    <!-- Hiển thị thông báo -->
+                    <div class="mt-3 text-center text-danger">
+                        ${msg}
+                    </div>
+                </div>
+            </div>
+        </div>
 
-            <br><br>
-
-            <button type="submit">Change Password</button>
-
-        </form>
-
-        ${msg}
     </body>
 </html>
